@@ -38,7 +38,7 @@ data_df_forXML <- gas_prices %>%
   mutate(showValue = case_when(label == date_min ~ "1",
                                label == date_max ~ "1",
                                TRUE ~ "0")) %>% 
-  mutate(label = format(as.Date(label), "%b %Y")) %>% 
+  mutate(label = format(as.Date(label), "%b %d, %Y")) %>% 
   mutate(label = str_replace_all(label, " 0", " ")) %>% 
   mutate(valueToShow = paste0("$", value))
 

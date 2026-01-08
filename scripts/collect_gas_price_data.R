@@ -24,4 +24,7 @@ data <- response$data
 
 data_clean <- data %>% 
   select(period, value) %>% 
+  mutate(value = round(as.numeric(value), digits=2)) %>% 
   arrange(period)
+
+write.csv(data_clean, "data/weekly_gas_prices_eia.csv", row.names = FALSE)
