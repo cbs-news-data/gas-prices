@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <title>Weekly Retail Gas Prices</title>
+  <subtitle>U.S. all grades all formulations, $/gallon</subtitle>
+  <type>line</type>
+  <x-axis>Jan 13, 2025|Jan 5, 2026</x-axis>
+  <y-axis>1|2|3|4</y-axis>
+  <y-max>4</y-max>
+  <dataPoint>
+    <label>Jan 2025</label>
+    <value>3.164</value>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
+    <valueToShow>$3.164</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jan 2025</label>
+    <value>3.229</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.229</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jan 2025</label>
+    <value>3.224</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.224</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 2025</label>
+    <value>3.205</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.205</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 2025</label>
+    <value>3.253</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.253</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 2025</label>
+    <value>3.276</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.276</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 2025</label>
+    <value>3.255</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.255</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Mar 2025</label>
+    <value>3.206</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.206</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Mar 2025</label>
+    <value>3.197</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.197</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Mar 2025</label>
+    <value>3.184</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.184</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Mar 2025</label>
+    <value>3.24</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.24</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Mar 2025</label>
+    <value>3.288</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.288</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Apr 2025</label>
+    <value>3.37</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.37</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Apr 2025</label>
+    <value>3.295</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.295</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Apr 2025</label>
+    <value>3.268</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.268</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Apr 2025</label>
+    <value>3.261</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.261</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>May 2025</label>
+    <value>3.273</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.273</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>May 2025</label>
+    <value>3.249</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.249</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>May 2025</label>
+    <value>3.302</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.302</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>May 2025</label>
+    <value>3.288</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.288</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jun 2025</label>
+    <value>3.256</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.256</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jun 2025</label>
+    <value>3.235</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.235</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jun 2025</label>
+    <value>3.265</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.265</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jun 2025</label>
+    <value>3.338</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.338</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jun 2025</label>
+    <value>3.288</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.288</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jul 2025</label>
+    <value>3.251</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.251</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jul 2025</label>
+    <value>3.254</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.254</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jul 2025</label>
+    <value>3.246</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.246</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jul 2025</label>
+    <value>3.247</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.247</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Aug 2025</label>
+    <value>3.265</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.265</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Aug 2025</label>
+    <value>3.243</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.243</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Aug 2025</label>
+    <value>3.251</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.251</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Aug 2025</label>
+    <value>3.272</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.272</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Sep 2025</label>
+    <value>3.303</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.303</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Sep 2025</label>
+    <value>3.319</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.319</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Sep 2025</label>
+    <value>3.296</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.296</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Sep 2025</label>
+    <value>3.301</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.301</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Sep 2025</label>
+    <value>3.248</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.248</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Oct 2025</label>
+    <value>3.253</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.253</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Oct 2025</label>
+    <value>3.193</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.193</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Oct 2025</label>
+    <value>3.151</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.151</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Oct 2025</label>
+    <value>3.164</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.164</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Nov 2025</label>
+    <value>3.151</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.151</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Nov 2025</label>
+    <value>3.186</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.186</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Nov 2025</label>
+    <value>3.19</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.19</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Nov 2025</label>
+    <value>3.19</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.19</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Dec 2025</label>
+    <value>3.115</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.115</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Dec 2025</label>
+    <value>3.07</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.07</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Dec 2025</label>
+    <value>3.024</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.024</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Dec 2025</label>
+    <value>2.97</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$2.97</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Dec 2025</label>
+    <value>2.94</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$2.94</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jan 2026</label>
+    <value>2.925</value>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
+    <valueToShow>$2.925</valueToShow>
+  </dataPoint>
+  <source>U.S. Energy Information Administration</source>
+  <date>As of Jan 5, 2026</date>
+  <qualifier> </qualifier>
+</chart>
