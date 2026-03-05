@@ -3,70 +3,14 @@
   <title>Weekly Retail Gas Prices</title>
   <subtitle>U.S. all grades all formulations, $/gallon</subtitle>
   <type>line</type>
-  <x-axis>Jan 13, 2025|Jan 5, 2026</x-axis>
+  <x-axis>Mar 10, 2025|Mar 2, 2026</x-axis>
   <y-axis>1|2|3|4</y-axis>
   <y-max>4</y-max>
   <dataPoint>
-    <label>Jan 13, 2025</label>
-    <value>3.16</value>
-    <showLabel>1</showLabel>
-    <showValue>1</showValue>
-    <valueToShow>$3.16</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Jan 20, 2025</label>
-    <value>3.23</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.23</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Jan 27, 2025</label>
-    <value>3.22</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.22</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Feb 3, 2025</label>
-    <value>3.2</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.2</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Feb 10, 2025</label>
-    <value>3.25</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.25</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Feb 17, 2025</label>
-    <value>3.28</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.28</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Feb 24, 2025</label>
-    <value>3.26</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.26</valueToShow>
-  </dataPoint>
-  <dataPoint>
-    <label>Mar 3, 2025</label>
-    <value>3.21</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
-    <valueToShow>$3.21</valueToShow>
-  </dataPoint>
-  <dataPoint>
     <label>Mar 10, 2025</label>
     <value>3.2</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
     <valueToShow>$3.2</valueToShow>
   </dataPoint>
   <dataPoint>
@@ -366,11 +310,67 @@
   <dataPoint>
     <label>Jan 5, 2026</label>
     <value>2.92</value>
-    <showLabel>1</showLabel>
-    <showValue>1</showValue>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
     <valueToShow>$2.92</valueToShow>
   </dataPoint>
+  <dataPoint>
+    <label>Jan 12, 2026</label>
+    <value>2.91</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$2.91</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jan 19, 2026</label>
+    <value>2.93</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$2.93</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Jan 26, 2026</label>
+    <value>2.98</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$2.98</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 2, 2026</label>
+    <value>3</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 9, 2026</label>
+    <value>3.03</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.03</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 16, 2026</label>
+    <value>3.06</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.06</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Feb 23, 2026</label>
+    <value>3.07</value>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
+    <valueToShow>$3.07</valueToShow>
+  </dataPoint>
+  <dataPoint>
+    <label>Mar 2, 2026</label>
+    <value>3.15</value>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
+    <valueToShow>$3.15</valueToShow>
+  </dataPoint>
   <source>U.S. Energy Information Administration</source>
-  <date>As of Jan 5, 2026</date>
+  <date>As of Mar 2, 2026</date>
   <qualifier> </qualifier>
 </chart>
