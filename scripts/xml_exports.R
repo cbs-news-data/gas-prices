@@ -40,7 +40,7 @@ data_df_forXML <- gas_prices %>%
                                TRUE ~ "0")) %>% 
   mutate(label = format(as.Date(label), "%b %d, %Y")) %>% 
   mutate(label = str_replace_all(label, " 0", " ")) %>% 
-  mutate(valueToShow = paste0("$", value))
+  mutate(valueToShow = paste0("$", sprintf("%.2f", value)))
 
 #get labels for x axis
 price_labels = paste0(date_min_pretty, "|", date_max_pretty)

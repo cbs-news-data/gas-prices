@@ -11,7 +11,7 @@
     <value>3.2</value>
     <showLabel>1</showLabel>
     <showValue>1</showValue>
-    <valueToShow>$3.2</valueToShow>
+    <valueToShow>$3.20</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>Mar 17, 2025</label>
@@ -46,7 +46,7 @@
     <value>3.3</value>
     <showLabel>0</showLabel>
     <showValue>0</showValue>
-    <valueToShow>$3.3</valueToShow>
+    <valueToShow>$3.30</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>Apr 21, 2025</label>
@@ -81,7 +81,7 @@
     <value>3.3</value>
     <showLabel>0</showLabel>
     <showValue>0</showValue>
-    <valueToShow>$3.3</valueToShow>
+    <valueToShow>$3.30</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>May 26, 2025</label>
@@ -186,7 +186,7 @@
     <value>3.3</value>
     <showLabel>0</showLabel>
     <showValue>0</showValue>
-    <valueToShow>$3.3</valueToShow>
+    <valueToShow>$3.30</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>Sep 8, 2025</label>
@@ -200,14 +200,14 @@
     <value>3.3</value>
     <showLabel>0</showLabel>
     <showValue>0</showValue>
-    <valueToShow>$3.3</valueToShow>
+    <valueToShow>$3.30</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>Sep 22, 2025</label>
     <value>3.3</value>
     <showLabel>0</showLabel>
     <showValue>0</showValue>
-    <valueToShow>$3.3</valueToShow>
+    <valueToShow>$3.30</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>Sep 29, 2025</label>
@@ -340,7 +340,7 @@
     <value>3</value>
     <showLabel>0</showLabel>
     <showValue>0</showValue>
-    <valueToShow>$3</valueToShow>
+    <valueToShow>$3.00</valueToShow>
   </dataPoint>
   <dataPoint>
     <label>Feb 9, 2026</label>
