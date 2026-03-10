@@ -2,25 +2,38 @@ name: run-gas-prices
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   schedule:
-    - cron: "0 11 * * *"  # 7:00am ET during DST (EDT); 6:00am ET during EST
-    - cron: "0 12 * * *"  # 8:00am ET during DST (EDT); 7:00am ET during EST
-    
+    - cron: "0 11 * * *"  # 7:00am ET during DST; 6:00am ET during EST
+    - cron: "0 12 * * *"  # 8:00am ET during DST; 7:00am ET during EST
   workflow_dispatch:
+
+concurrency:
+  group: run-gas-prices
+  cancel-in-progress: true
+
+permissions:
+  contents: write
 
 jobs:
   run-scripts:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install packages
+      # Single fast dependency install path + caching
+      - name: Install dependencies (cached)
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          # pak is used under the hood; include explicitly to avoid surprises
           packages: |
+            any::pak
             any::tidyverse
             any::janitor
             any::xml2
@@ -29,27 +42,23 @@ jobs:
             any::rvest
             any::lubridate
             any::readr
+            github::munichrocker/DatawRappr
+          cache-version: 2
 
-      - name: Set up environment variables based on EIA_API_KEY secret
+      - name: Set up environment variables
         run: echo "EIA_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
 
-      - name: Install DatawRappr package
-        run: |
-          Rscript -e "pak::pkg_install('munichrocker/DatawRappr')"
-
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Run script
+      - name: Run collect script
         run: Rscript -e 'source("scripts/collect_gas_price_data.R")'
-        
-      - name: Run script
+
+      - name: Run xml export script
         run: Rscript -e 'source("scripts/xml_exports.R")'
 
-      - name: Commit results
+      - name: Commit & push if changed
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          git commit -m 'update data' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "update data"
+          git push
