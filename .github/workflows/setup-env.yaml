@@ -10,7 +10,7 @@ on:
 
 jobs:
   run-env-script:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:  
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
