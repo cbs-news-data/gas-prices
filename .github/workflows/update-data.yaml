@@ -23,20 +23,14 @@ jobs:
         with:
           packages: |
             any::tidyverse
-            any::dplyr 
             any::janitor
-            any::tidyr
-            any::lubridate
             any::dotenv
             any::xml2
             any::jsonlite
-            any::readr
-            any::rvest
             any::stringr
-            any::jsonlite
 
       - name: Set up environment variables based on EIA_API_KEY secret
-        run: echo "DW_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
+        run: echo "EIA_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
 
       - name: Install DatawRappr package
         run: |
