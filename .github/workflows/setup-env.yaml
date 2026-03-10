@@ -26,7 +26,7 @@ jobs:
           restore-keys: ${{ runner.os }}-r-
 
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("devtools", "tidyverse", "stringr", "jsonlite", "janitor", "xml2"))'
+        run: Rscript -e 'install.packages(c("devtools", "tidyverse", "stringr", "jsonlite", "janitor", "xml2", "rvest", "lubridate", "readr"))'
 
       - name: Install DatawRappr package
         run: Rscript -e "devtools::install_github('munichrocker/DatawRappr')"
