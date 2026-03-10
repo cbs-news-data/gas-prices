@@ -5,9 +5,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0,30 14 * * 2"  #10 and 10:30am ET on Tuesdays
-    - cron: "0 15 * * 2"   # 11am Tuesdays
-    - cron: "0 16 * * 2"   # 12pm Tuesdays
+    - cron: "0 11 * * *"  # 7:00am ET during DST (EDT); 6:00am ET during EST
+    - cron: "0 12 * * *"  # 8:00am ET during DST (EDT); 7:00am ET during EST
     
   workflow_dispatch:
 
@@ -24,10 +23,12 @@ jobs:
           packages: |
             any::tidyverse
             any::janitor
-            any::dotenv
             any::xml2
             any::jsonlite
             any::stringr
+            any::rvest
+            any::lubridate
+            any::readr
 
       - name: Set up environment variables based on EIA_API_KEY secret
         run: echo "EIA_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
