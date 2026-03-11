@@ -18,6 +18,9 @@ permissions:
 jobs:
   run-scripts:
     runs-on: ubuntu-latest
+    env:
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      DW_API_KEY: ${{ secrets.DW_API_KEY }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
