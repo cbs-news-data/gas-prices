@@ -46,10 +46,15 @@ jobs:
           cache-version: 2
 
       - name: Set up environment variables
-        run: echo "EIA_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
+        run: |
+          echo "EIA_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
+          echo "DW_API_KEY=${{ secrets.DW_API_KEY }}" >> $GITHUB_ENV
 
       - name: Run collect script
         run: Rscript -e 'source("scripts/collect_gas_price_data.R")'
+
+      - name: Run AAA script
+        run: Rscript -e 'source("scripts/gas-prices-aaa.R")'
 
       - name: Run xml export script
         run: Rscript -e 'source("scripts/xml_exports.R")'
