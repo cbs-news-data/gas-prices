@@ -28,10 +28,12 @@ prices_updated_date <- mdy(prices_updated)
 prices_updated_date_pretty <- format(prices_updated_date, "%b %d, %Y")
 
 #national prices
-national_prices <- page %>% 
+prices <- page %>% 
   html_element(xpath = "//h1[contains(., 'National average gas prices')]/following::table[1]") %>% 
   html_table(fill = TRUE) %>% 
-  janitor::clean_names() %>%
+  janitor::clean_names() 
+
+national_prices <- prices %>%
   mutate(Date = prices_updated_date) %>%
   rename(Period = x,
          Regular = regular,
@@ -51,6 +53,7 @@ national_prices <- page %>%
 aaa_historical <- read.csv("data/aaa_historical_gas_prices.csv") %>% 
   janitor::clean_names() %>%
   mutate(date = as.Date(date)) %>%
+  distinct(date, .keep_all = TRUE) %>%
   filter(date != prices_updated_date) %>%
   rename(Date = date,
          Regular = regular,
@@ -99,15 +102,25 @@ dw_publish_chart(chart_id = "FveIx", api_key = dw_api_key)
 
   
   
-national_prices_regular <- national_prices %>% 
-  select(x, regular) %>% 
-  setNames(c("period", "price")) %>% 
+national_prices_regular <- prices %>%
+  select(x, regular) %>%
+  rename(period = x,
+         price = regular) %>%
   mutate(price = as.numeric(str_replace(price, "\\$", ""))) %>% 
   mutate(period = str_replace(period, "Current Avg.", "Today"),
          period = str_replace(period, "Yesterday Avg.", "Yesterday"),
          period = str_replace(period, "Week Ago Avg.", "Last week"),
          period = str_replace(period, "Month Ago Avg.", "Last month"),
-         period = str_replace(period, "Year Ago Avg.", "Last year"))
+         period = str_replace(period, "Year Ago Avg.", "Last year")) %>% 
+  mutate(index = case_when(
+    period == "Today" ~ 1,
+    period == "Yesterday" ~ 2,
+    period == "Last week" ~ 3,
+    period == "Last month" ~ 4,
+    period == "Last year" ~ 5
+  )) %>% 
+  arrange(desc(index)) %>% 
+  select(-index)
 
 today_price <- national_prices_regular %>% filter(period == "Today") %>% pull(price)
 yesterday_price <- national_prices_regular %>% filter(period == "Yesterday") %>% pull(price)
@@ -177,7 +190,10 @@ all_state_prices <- map_dfr(state_abbs, safe_get_state_prices)
 
 
 state_prices_clean <- all_state_prices %>% 
-  pivot_wider(names_from = period, values_from = price)
+  pivot_wider(names_from = period, values_from = price) %>% 
+  mutate(today_vs_yesterday = round(Today - Yesterday, 2),
+         today_vs_last_month = round(Today - `Last month`, 2),
+         today_vs_last_year = round(Today - `Last year`, 2))
 
 
 map_note <- paste0("As of ", prices_updated_date_pretty, ".")
@@ -204,7 +220,7 @@ dw_edit_chart(chart_id = "TIphM", annotate = map_note, api_key = dw_api_key)
 dw_publish_chart(chart_id = "TIphM", api_key = dw_api_key)
 
 
-#line graph!!
+
 
 
 
