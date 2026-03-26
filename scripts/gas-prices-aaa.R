@@ -67,38 +67,6 @@ write.csv(aaa_historical, "data/aaa_historical_gas_prices.csv", row.names = FALS
 
 historical_note <- paste0("As of ", prices_updated_date_pretty, ".")
 
-#5 year chart
-aaa_historical_5years <- aaa_historical %>% 
-  select(Date, Regular, Diesel) %>%
-  filter(Date >= (prices_updated_date - years(5)))
-write.csv(aaa_historical_5years, "data/aaa_historical_gas_prices_5years.csv", row.names = FALSE)
-
-# Upload data and publish 5 year chart
-dw_data_to_chart(aaa_historical_5years, chart_id = "VKUkr", api_key = dw_api_key)
-dw_edit_chart(chart_id = "VKUkr", annotate = historical_note, api_key = dw_api_key)
-dw_publish_chart(chart_id = "VKUkr", api_key = dw_api_key)
-
-#1 year chart
-aaa_historical_1year <- aaa_historical %>% 
-  select(Date, Regular, Diesel) %>%
-  filter(Date >= (prices_updated_date - years(1)))
-write.csv(aaa_historical_1year, "data/aaa_historical_gas_prices_1year.csv", row.names = FALSE)
-
-# Upload data and publish 1 year chart
-dw_data_to_chart(aaa_historical_1year, chart_id = "FinjE", api_key = dw_api_key)
-dw_edit_chart(chart_id = "FinjE", annotate = historical_note, api_key = dw_api_key)
-dw_publish_chart(chart_id = "FinjE", api_key = dw_api_key)
-
-#30 days chart
-aaa_historical_30days <- aaa_historical %>% 
-  select(Date, Regular, Diesel) %>%
-  filter(Date >= (prices_updated_date - 30))
-write.csv(aaa_historical_30days, "data/aaa_historical_gas_prices_30days.csv", row.names = FALSE)
-
-# Upload data and publish 30 days chart
-dw_data_to_chart(aaa_historical_30days, chart_id = "FveIx", api_key = dw_api_key)
-dw_edit_chart(chart_id = "FveIx", annotate = historical_note, api_key = dw_api_key)
-dw_publish_chart(chart_id = "FveIx", api_key = dw_api_key)
 
   
   
@@ -134,7 +102,52 @@ today_vs_last_year <- round(today_price - last_year_price, 2)
 
 description <- paste0("On ", prices_updated_date_pretty, ", the average cost of gas nationwide was <b>$", round(today_price, 2), " per gallon</b>. That's <b>$",round(today_vs_yesterday, 2), " ", ifelse(today_vs_yesterday > 0, "higher", "lower"), "</b> than the day before, <b>$",round(today_vs_last_month, 2), " ", ifelse(today_vs_last_month > 0, "higher", "lower"), "</b> than a month ago and <b>$",round(today_vs_last_year, 2), " ", ifelse(today_vs_last_year > 0, "higher", "lower"), "</b> than a year ago.")
 
-# Upload data and publish chart
+line_1y_description <- paste0('On ', prices_updated_date_pretty, ', the average cost of gas nationwide was <b>$', round(today_price, 2), ' per gallon</b>. That is <b>$',round(today_vs_yesterday, 2), ' ', ifelse(today_vs_yesterday > 0, 'higher', 'lower'), '</b> than the day before, <b>$',round(today_vs_last_month, 2), ' ', ifelse(today_vs_last_month > 0, 'higher', 'lower'), '</b> than a month ago and <b>$',round(today_vs_last_year, 2), ' ', ifelse(today_vs_last_year > 0, 'higher', 'lower'), '</b> than a year ago. <br><br>Choose a time frame : <br><span style="line-height:30px"><a target="_self" href="https://datawrapper.dwcdn.net/FinjE/" style="background:#014c12; padding:1px 6px; border-radius:5px; border:1px solid black; color:#ffffff; font-weight:400; cursor:pointer;"> 1 year </a> &nbsp;<a target="_self" href="https://datawrapper.dwcdn.net/VKUkr/" style="background:#858585; padding:1px 4px; border-radius:5px; color:#ffffff; font-weight:400; box-shadow:0px 0px 7px 2px rgba(0,0,0,0.07); cursor:pointer;"> 5 years </a> &nbsp;<a target="_self" href="https://datawrapper.dwcdn.net/FveIx/" style="background:#858585; padding:1px 4px; border-radius:5px; color:#ffffff; font-weight:400; box-shadow:0px 0px 7px 2px rgba(0,0,0,0.07); cursor:pointer;"> 30 days </a>')
+
+line_5y_description <- paste0('On ', prices_updated_date_pretty, ', the average cost of gas nationwide was <b>$', round(today_price, 2), ' per gallon</b>. That is <b>$',round(today_vs_yesterday, 2), ' ', ifelse(today_vs_yesterday > 0, 'higher', 'lower'), '</b> than the day before, <b>$',round(today_vs_last_month, 2), ' ', ifelse(today_vs_last_month > 0, 'higher', 'lower'), '</b> than a month ago and <b>$',round(today_vs_last_year, 2), ' ', ifelse(today_vs_last_year > 0, 'higher', 'lower'), '</b> than a year ago. <br><br>Choose a time frame : <br>
+<span style="line-height:30px"><a target="_self" href="https://datawrapper.dwcdn.net/FinjE/" style="background:#858585; padding:1px 4px; border-radius:5px; color:#ffffff; font-weight:400; box-shadow:0px 0px 7px 2px rgba(0,0,0,0.07); cursor:pointer;"> 1 year </a> &nbsp;<a target="_self" href="https://datawrapper.dwcdn.net/VKUkr/" style="background:#014c12; padding:1px 6px; border-radius:5px; border:1px solid black; color:#ffffff; font-weight:400; cursor:pointer;"> 5 years </a>&nbsp;<a target="_self" href="https://datawrapper.dwcdn.net/FveIx/" style="background:#858585; padding:1px 4px; border-radius:5px; color:#ffffff; font-weight:400; box-shadow:0px 0px 7px 2px rgba(0,0,0,0.07); cursor:pointer;"> 30 days </a>')
+
+
+line_30d_description <- paste0('On ', prices_updated_date_pretty, ', the average cost of gas nationwide was <b>$', round(today_price, 2), ' per gallon</b>. That is <b>$',round(today_vs_yesterday, 2), ' ', ifelse(today_vs_yesterday > 0, 'higher', 'lower'), '</b> than the day before, <b>$',round(today_vs_last_month, 2), ' ', ifelse(today_vs_last_month > 0, 'higher', 'lower'), '</b> than a month ago and <b>$',round(today_vs_last_year, 2), ' ', ifelse(today_vs_last_year > 0, 'higher', 'lower'), '</b> than a year ago. <br><br>Choose a time frame : <br><span style="line-height:30px"><a target="_self" href="https://datawrapper.dwcdn.net/FinjE/" style="background:#858585; padding:1px 4px; border-radius:5px; color:#ffffff; font-weight:400; box-shadow:0px 0px 7px 2px rgba(0,0,0,0.07); cursor:pointer;"> 1 year </a> &nbsp;<a target="_self" href="https://datawrapper.dwcdn.net/VKUkr/" style="background:#858585; padding:1px 4px; border-radius:5px; color:#ffffff; font-weight:400; box-shadow:0px 0px 7px 2px rgba(0,0,0,0.07); cursor:pointer;"> 5 years </a>&nbsp;<a target="_self" href="https://datawrapper.dwcdn.net/FveIx/" style="background:#014c12; padding:1px 6px; border-radius:5px; border:1px solid black; color:#ffffff; font-weight:400; cursor:pointer;"> 30 days </a>')
+
+
+
+
+#5 year chart
+aaa_historical_5years <- aaa_historical %>% 
+  select(Date, Regular, Diesel) %>%
+  filter(Date >= (prices_updated_date - years(5)))
+write.csv(aaa_historical_5years, "data/aaa_historical_gas_prices_5years.csv", row.names = FALSE)
+
+# Upload data and publish 5 year chart
+dw_data_to_chart(aaa_historical_5years, chart_id = "VKUkr", api_key = dw_api_key)
+dw_edit_chart(chart_id = "VKUkr", intro = line_5y_description, annotate = historical_note, api_key = dw_api_key)
+dw_publish_chart(chart_id = "VKUkr", api_key = dw_api_key)
+
+#1 year chart
+aaa_historical_1year <- aaa_historical %>% 
+  select(Date, Regular, Diesel) %>%
+  filter(Date >= (prices_updated_date - years(1)))
+write.csv(aaa_historical_1year, "data/aaa_historical_gas_prices_1year.csv", row.names = FALSE)
+
+# Upload data and publish 1 year chart
+dw_data_to_chart(aaa_historical_1year, chart_id = "FinjE", api_key = dw_api_key)
+dw_edit_chart(chart_id = "FinjE", intro = line_1y_description, annotate = historical_note, api_key = dw_api_key)
+dw_publish_chart(chart_id = "FinjE", api_key = dw_api_key)
+
+#30 days chart
+aaa_historical_30days <- aaa_historical %>% 
+  select(Date, Regular, Diesel) %>%
+  filter(Date >= (prices_updated_date - 30))
+write.csv(aaa_historical_30days, "data/aaa_historical_gas_prices_30days.csv", row.names = FALSE)
+
+# Upload data and publish 30 days chart
+dw_data_to_chart(aaa_historical_30days, chart_id = "FveIx", api_key = dw_api_key)
+dw_edit_chart(chart_id = "FveIx", intro = line_30d_description, annotate = historical_note, api_key = dw_api_key)
+dw_publish_chart(chart_id = "FveIx", api_key = dw_api_key)
+
+
+# Upload data and publish bar chart
 dw_data_to_chart(national_prices_regular, chart_id = "rT08j", api_key = dw_api_key)
 dw_edit_chart(chart_id = "rT08j", intro = description, api_key = dw_api_key)
 dw_publish_chart(chart_id = "rT08j", api_key = dw_api_key)
