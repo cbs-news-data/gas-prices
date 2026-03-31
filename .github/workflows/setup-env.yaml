@@ -28,5 +28,8 @@ jobs:
             any::rvest
             any::lubridate
             any::readr
+            any::httr2
+            any::purr
+            any::tibble
             github::munichrocker/DatawRappr
           cache-version: 2
