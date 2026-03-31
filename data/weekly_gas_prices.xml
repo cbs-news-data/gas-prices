@@ -3,7 +3,7 @@
   <title>Weekly Retail Gas Prices</title>
   <subtitle>U.S. all grades all formulations, $/gallon</subtitle>
   <type>line</type>
-  <x-axis>Mar 31, 2025|Mar 23, 2026</x-axis>
+  <x-axis>Mar 31, 2025|Mar 30, 2026</x-axis>
   <y-axis>1|2|3|4|5</y-axis>
   <y-max>5</y-max>
   <dataPoint>
@@ -366,11 +366,18 @@
   <dataPoint>
     <label>Mar 23, 2026</label>
     <value>4.1</value>
-    <showLabel>1</showLabel>
-    <showValue>1</showValue>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
     <valueToShow>$4.10</valueToShow>
   </dataPoint>
+  <dataPoint>
+    <label>Mar 30, 2026</label>
+    <value>4.13</value>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
+    <valueToShow>$4.13</valueToShow>
+  </dataPoint>
   <source>U.S. Energy Information Administration</source>
-  <date>As of Mar 23, 2026</date>
+  <date>As of Mar 30, 2026</date>
   <qualifier> </qualifier>
 </chart>
