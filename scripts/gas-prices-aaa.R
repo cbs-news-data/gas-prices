@@ -5,6 +5,10 @@ library(stringr)
 library(lubridate)
 library(readr)
 library(DatawRappr)
+library(httr2)
+library(jsonlite)
+library(purrr)
+library(tibble)
 
 # Load environment variables
 tryCatch(load_dot_env(), error = function(e) {}) 
@@ -14,40 +18,52 @@ dw_api_key <- Sys.getenv("DW_API_KEY")
 datawrapper_auth(api_key = dw_api_key)
 
 
-url <- "https://gasprices.aaa.com/"
-
-page <- read_html(url)
-
-# Get the date of the most recent price update
-prices_updated <- page %>% 
-  html_element(xpath = "/html/body/main/div[2]/div/div[1]/div/span") %>% 
-  html_text(trim = TRUE) %>% 
-  str_replace("Price as of", "")
-
-prices_updated_date <- mdy(prices_updated)
+prices_updated_date <- Sys.Date()
 prices_updated_date_pretty <- format(prices_updated_date, "%b %d, %Y")
 
 #national prices
-prices <- page %>% 
-  html_element(xpath = "//h1[contains(., 'National average gas prices')]/following::table[1]") %>% 
-  html_table(fill = TRUE) %>% 
-  janitor::clean_names() 
+prices_resp <- request("https://gasprices.aaa.com/wp-admin/admin-ajax.php") |>
+  req_headers(
+    `X-Requested-With` = "XMLHttpRequest",
+    Origin = "https://gasprices.aaa.com",
+    Referer = "https://gasprices.aaa.com/",
+    `User-Agent` = "Mozilla/5.0"
+  ) |>
+  req_body_form(
+    action = "states_cost_data",
+    `data[locL]` = "US",
+    `data[locR]` = "US"
+  ) |>
+  req_perform()
+
+prices_txt <- resp_body_string(prices_resp)
+prices_dat <- fromJSON(prices_txt, simplifyVector = TRUE)
+prices_data <- prices_dat$data
+prices <- as.data.frame(prices_data) %>% 
+  distinct() %>% 
+  mutate(period = c(
+    "Current Avg.",
+    "Yesterday Avg.",
+    "Week Ago Avg.",
+    "Month Ago Avg.",
+    "Year Ago Avg."
+  )) %>% 
+  relocate(period)
 
 national_prices <- prices %>%
   mutate(Date = prices_updated_date) %>%
-  rename(Period = x,
-         Regular = regular,
-         `Mid-Grade` = mid_grade,
+  rename(Period = period,
+         Regular = unleaded,
+         `Mid-Grade` = midgrade,
          Premium = premium,
-         Diesel = diesel,
-         E85 = e85) %>% 
+         Diesel = diesel) %>% 
   filter(Period == "Current Avg.") %>% 
-  select(Date, Regular, `Mid-Grade`, Premium, Diesel, E85) %>% 
-  mutate(Regular = as.numeric(str_replace(Regular, "\\$", "")),
-         `Mid-Grade` = as.numeric(str_replace(`Mid-Grade`, "\\$", "")),
-         Premium = as.numeric(str_replace(Premium, "\\$", "")),
-         Diesel = as.numeric(str_replace(Diesel, "\\$", "")),
-         E85 = as.numeric(str_replace(E85, "\\$", "")))
+  select(Date, Regular, `Mid-Grade`, Premium, Diesel) %>% 
+  mutate(Regular = as.numeric(Regular),
+         `Mid-Grade` = as.numeric(`Mid-Grade`),
+         Premium = as.numeric(Premium),
+         Diesel = as.numeric(Diesel)
+         )
 
 #add today's prices to historical data 
 aaa_historical <- read.csv("data/aaa_historical_gas_prices.csv") %>% 
@@ -67,13 +83,10 @@ write.csv(aaa_historical, "data/aaa_historical_gas_prices.csv", row.names = FALS
 
 historical_note <- paste0("As of ", prices_updated_date_pretty, ".")
 
-
-  
   
 national_prices_regular <- prices %>%
-  select(x, regular) %>%
-  rename(period = x,
-         price = regular) %>%
+  select(period, unleaded) %>%
+  rename(price = unleaded) %>%
   mutate(price = as.numeric(str_replace(price, "\\$", ""))) %>% 
   mutate(period = str_replace(period, "Current Avg.", "Today"),
          period = str_replace(period, "Yesterday Avg.", "Yesterday"),
@@ -153,6 +166,32 @@ dw_edit_chart(chart_id = "rT08j", intro = description, api_key = dw_api_key)
 dw_publish_chart(chart_id = "rT08j", api_key = dw_api_key)
 
 
+# test_state <- "CA"
+# 
+# resp <- request("https://gasprices.aaa.com/wp-admin/admin-ajax.php") |>
+#   req_headers(
+#     Accept = "application/json, text/javascript, */*; q=0.01",
+#     `Content-Type` = "application/x-www-form-urlencoded; charset=UTF-8",
+#     `X-Requested-With` = "XMLHttpRequest",
+#     Origin = "https://gasprices.aaa.com",
+#     Referer = paste0("https://gasprices.aaa.com/?state=", test_state),
+#     `User-Agent` = "Mozilla/5.0"
+#   ) |>
+#   req_body_form(
+#     action = "states_cost_data",
+#     `data[locL]` = test_state,
+#     `data[locR]` = "US"
+#   ) |>
+#   req_perform()
+# 
+# txt <- resp_body_string(resp)
+# dat <- fromJSON(txt, simplifyVector = TRUE)
+# data <- dat$data
+# ca_df <- as.data.frame(data)
+
+
+
+
 # get state abbreviations, including DC
 state_abbs <- c(state.abb, "DC")
 
@@ -160,53 +199,89 @@ state_abbs <- c(state.abb, "DC")
 state_lookup <- c(setNames(state.name, state.abb),
                   "DC" = "District of Columbia")
 
-# set URL base for state prices
-url_base <- "https://gasprices.aaa.com/?state="
+period_labels <- c(
+  "Current Avg.-state",
+  "Current Avg.-national",
+  "Yesterday Avg.-state",
+  "Yesterday Avg.-national",
+  "Week Ago Avg.-state",
+  "Week Ago Avg.-national",
+  "Month Ago Avg.-state",
+  "Month Ago Avg.-national",
+  "Year Ago Avg.-state",
+  "Year Ago Avg.-national"
+)
 
-get_state_prices <- function(state_abb) {
+get_state_gas <- function(state_code) {
+  Sys.sleep(runif(1, 0.8, 1.8))
   
-  message("Scraping: ", state_abb)
+  resp <- request("https://gasprices.aaa.com/wp-admin/admin-ajax.php") |>
+    req_headers(
+      Accept = "application/json, text/javascript, */*; q=0.01",
+      `Content-Type` = "application/x-www-form-urlencoded; charset=UTF-8",
+      `X-Requested-With` = "XMLHttpRequest",
+      Origin = "https://gasprices.aaa.com",
+      Referer = paste0("https://gasprices.aaa.com/?state=", state_code),
+      `User-Agent` = "Mozilla/5.0"
+    ) %>% 
+    req_body_form(
+      action = "states_cost_data",
+      `data[locL]` = state_code,
+      `data[locR]` = "US"
+    ) %>% 
+    req_perform()
   
-  # get full state name
-  state_full <- state_lookup[[state_abb]]
+  txt <- resp_body_string(resp)
   
-  url <- paste0(url_base, state_abb)
-  page <- read_html(url)
+  if (!startsWith(trimws(txt), "{")) {
+    return(tibble(
+      state = state_code,
+      period = NA_character_,
+      prices_updated_date = prices_updated_date,
+      error = "Non-JSON response",
+      raw_response = substr(txt, 1, 300)
+    ))
+  }
   
-  tbl <- page %>%
-    html_element(xpath = "//h1[contains(., 'average gas prices')]/following::table[1]") %>%
-    html_table(fill = TRUE) %>% 
-    clean_names() %>%
+  dat <- fromJSON(txt, simplifyVector = TRUE)
+  
+  df <- as_tibble(dat$data) %>% 
+    distinct() %>% 
     mutate(
-      state = state_abb,
-      state_name = state_full
-    ) %>%
-    select(state, state_name, x, regular) %>% 
-    setNames(c("state", "state_name", "period", "price")) %>% 
-    mutate(
-      price = as.numeric(str_replace(price, "\\$", "")),
-      period = str_replace(period, "Current Avg.", "Today"),
-      period = str_replace(period, "Yesterday Avg.", "Yesterday"),
-      period = str_replace(period, "Week Ago Avg.", "Last week"),
-      period = str_replace(period, "Month Ago Avg.", "Last month"),
-      period = str_replace(period, "Year Ago Avg.", "Last year")
-    )
+      period = period_labels[seq_len(n())],
+      state = state_code,
+      state_name = state_lookup[state_code],
+      prices_updated_date = prices_updated_date
+    ) %>% 
+    relocate(state, state_name, period, prices_updated_date) %>% 
+    filter(!grepl("national", period)) %>% 
+    select(state_name, period, unleaded)
   
-  print(head(tbl))
-  
-  return(tbl)
+  df
 }
 
-safe_get_state_prices <- possibly(get_state_prices, otherwise = NULL)
+all_states_prices <- map_dfr(state_abbs, get_state_gas) %>% 
+  pivot_wider(names_from = period, values_from = unleaded) %>% 
+  rename(
+    State = state_name,
+    Today = `Current Avg.-state`,
+    Yesterday = `Yesterday Avg.-state`,
+    `Last week` = `Week Ago Avg.-state`,
+    `Last month` = `Month Ago Avg.-state`,
+    `Last year` = `Year Ago Avg.-state`
+  )
 
-all_state_prices <- map_dfr(state_abbs, safe_get_state_prices)
-
-
-state_prices_clean <- all_state_prices %>% 
-  pivot_wider(names_from = period, values_from = price) %>% 
-  mutate(today_vs_yesterday = round(Today - Yesterday, 2),
+state_prices_clean <- all_states_prices %>% 
+  mutate(Today = as.numeric(Today),
+         Yesterday = as.numeric(Yesterday),
+         `Last week` = as.numeric(`Last week`),
+         `Last month` = as.numeric(`Last month`),
+         `Last year` = as.numeric(`Last year`)) %>% 
+  mutate(today_vs_yesterday = round((Today - Yesterday), 2),
          today_vs_last_month = round(Today - `Last month`, 2),
          today_vs_last_year = round(Today - `Last year`, 2))
+
+
 
 
 map_note <- paste0("As of ", prices_updated_date_pretty, ".")
@@ -223,8 +298,7 @@ write.csv(state_prices_clean, "data/state_gas_prices_aaa.csv", row.names = FALSE
 #table 
 
 state_prices_for_table <- state_prices_clean %>% 
-  select(state_name, `Last year`, `Last month`, `Last week`, `Yesterday`, `Today`) %>% 
-  rename(State = state_name) %>%
+  select(State, `Last year`, `Last month`, `Last week`, `Yesterday`, `Today`) %>% 
   arrange(desc(`Today`))
 
 # Upload data and publish chart
