@@ -59,6 +59,9 @@ jobs:
       - name: Run AAA script
         run: Rscript -e 'source("scripts/gas-prices-aaa.R")'
 
+      - name: Run AAA rvest script
+        run: Rscript -e 'source("scripts/gas-prices-aaa-rvest.R")'
+
       - name: Run xml export script
         run: Rscript -e 'source("scripts/xml_exports.R")'
 
