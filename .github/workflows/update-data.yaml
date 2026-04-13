@@ -56,12 +56,20 @@ jobs:
       - name: Run collect script
         run: Rscript -e 'source("scripts/collect_gas_price_data.R")'
 
-      - name: Run AAA script
+      - name: Run AAA script (primary)
+        id: aaa_primary
+        continue-on-error: true
         run: Rscript -e 'source("scripts/gas-prices-aaa.R")'
 
-      - name: Run AAA rvest script
+      - name: Run AAA rvest fallback
+        id: aaa_fallback
+        if: steps.aaa_primary.outcome == 'failure'
+        continue-on-error: true
         run: Rscript -e 'source("scripts/gas-prices-aaa-rvest.R")'
 
+      - name: Fail if both failed
+        if: steps.aaa_primary.outcome == 'failure' && steps.aaa_fallback.outcome == 'failure'
+        run: exit 1
       - name: Run xml export script
         run: Rscript -e 'source("scripts/xml_exports.R")'
 
