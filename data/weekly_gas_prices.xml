@@ -3,21 +3,14 @@
   <title>Weekly Retail Gas Prices</title>
   <subtitle>U.S. all grades all formulations, $/gallon</subtitle>
   <type>line</type>
-  <x-axis>May 12, 2025|May 4, 2026</x-axis>
+  <x-axis>May 19, 2025|May 11, 2026</x-axis>
   <y-axis>1|2|3|4|5</y-axis>
   <y-max>5</y-max>
   <dataPoint>
-    <label>May 12, 2025</label>
-    <value>3.25</value>
-    <showLabel>1</showLabel>
-    <showValue>1</showValue>
-    <valueToShow>$3.25</valueToShow>
-  </dataPoint>
-  <dataPoint>
     <label>May 19, 2025</label>
     <value>3.3</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
     <valueToShow>$3.30</valueToShow>
   </dataPoint>
   <dataPoint>
@@ -366,11 +359,18 @@
   <dataPoint>
     <label>May 4, 2026</label>
     <value>4.58</value>
-    <showLabel>1</showLabel>
-    <showValue>1</showValue>
+    <showLabel>0</showLabel>
+    <showValue>0</showValue>
     <valueToShow>$4.58</valueToShow>
   </dataPoint>
+  <dataPoint>
+    <label>May 11, 2026</label>
+    <value>4.63</value>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
+    <valueToShow>$4.63</valueToShow>
+  </dataPoint>
   <source>U.S. Energy Information Administration</source>
-  <date>As of May 4, 2026</date>
+  <date>As of May 11, 2026</date>
   <qualifier> </qualifier>
 </chart>
