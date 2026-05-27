@@ -3,21 +3,14 @@
   <title>Weekly Retail Gas Prices</title>
   <subtitle>U.S. all grades all formulations, $/gallon</subtitle>
   <type>line</type>
-  <x-axis>May 26, 2025|May 18, 2026</x-axis>
+  <x-axis>Jun 2, 2025|May 18, 2026</x-axis>
   <y-axis>1|2|3|4|5</y-axis>
   <y-max>5</y-max>
   <dataPoint>
-    <label>May 26, 2025</label>
-    <value>3.29</value>
-    <showLabel>1</showLabel>
-    <showValue>1</showValue>
-    <valueToShow>$3.29</valueToShow>
-  </dataPoint>
-  <dataPoint>
     <label>Jun 2, 2025</label>
     <value>3.26</value>
-    <showLabel>0</showLabel>
-    <showValue>0</showValue>
+    <showLabel>1</showLabel>
+    <showValue>1</showValue>
     <valueToShow>$3.26</valueToShow>
   </dataPoint>
   <dataPoint>
