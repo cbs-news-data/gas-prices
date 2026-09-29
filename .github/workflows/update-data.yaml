@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
-      DW_API_KEY: ${{ secrets.DW_API_KEY }}
+      DATAWRAPPER_ACCESS_TOKEN: ${{ secrets.DATAWRAPPER_ACCESS_TOKEN }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "EIA_API_KEY=${{ secrets.EIA_API_KEY }}" >> $GITHUB_ENV
-          echo "DW_API_KEY=${{ secrets.DW_API_KEY }}" >> $GITHUB_ENV
+          echo "DATAWRAPPER_ACCESS_TOKEN=${{ secrets.DATAWRAPPER_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
       - name: Run collect script
         run: Rscript -e 'source("scripts/collect_gas_price_data.R")'

@@ -12,7 +12,7 @@ library(tibble)
 
 # Load environment variables
 tryCatch(load_dot_env(), error = function(e) {}) 
-dw_api_key <- Sys.getenv("DW_API_KEY")
+dw_api_key <- Sys.getenv("DATAWRAPPER_ACCESS_TOKEN")
 
 # Authenticate with Datawrapper
 datawrapper_auth(api_key = dw_api_key)
